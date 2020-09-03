@@ -10,3 +10,11 @@ class LinkedList:
             return f'{self.data}'
         else:
             return f'{self.data}->{self.next}'
+
+    def __getitem__(self, item):
+        if item == 0:
+            return self.data
+        elif self.next is not None:
+            return self.next[item-1]
+        else:
+            raise IndexError('LinkedList item is out of range')
