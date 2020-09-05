@@ -25,7 +25,10 @@ class TestLinkedList(TestCase):
         self.assertNotEquals(LinkedList(1, 2), LinkedList(1, 2, 3))
 
     def test_length(self):
-        pass
+        # self.assertEqual(0, len(LinkedList()))
+        self.assertEqual(1, len(LinkedList(1)))
+        self.assertEqual(2, len(LinkedList(1, 2)))
+        self.assertEqual(3, len(LinkedList(1, 2, 3)))
 
     def test_sort(self):
         pass

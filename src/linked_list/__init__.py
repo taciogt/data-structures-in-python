@@ -1,3 +1,5 @@
+
+
 class LinkedList:
 
     def __init__(self, *args):
@@ -13,6 +15,12 @@ class LinkedList:
             return False
 
         return self.node == other.node and self.next == other.next
+
+    def __len__(self):
+        if self.next is not None:
+            return 1 + len(self.next)
+        else:
+            return 1
 
     def __str__(self):
         if self.next is None:
