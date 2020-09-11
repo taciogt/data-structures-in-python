@@ -1,4 +1,4 @@
-from unittest import TestCase
+from unittest import TestCase, skip
 from linked_list import LinkedList
 
 
@@ -21,14 +21,14 @@ class TestLinkedList(TestCase):
         self.assertEqual(LinkedList(1), LinkedList(1))
         self.assertEqual(LinkedList(1, 2, 3), LinkedList(1, 2, 3))
 
-        self.assertNotEquals(LinkedList(1, 2, 3), LinkedList())
-        self.assertNotEquals(LinkedList(), LinkedList(1, 2, 3))
-        self.assertNotEquals(LinkedList(1, 3, 2), LinkedList(1, 2, 3))
-        self.assertNotEquals(LinkedList(1, 2, 3), LinkedList(1, 2))
-        self.assertNotEquals(LinkedList(1, 2), LinkedList(1, 2, 3))
+        self.assertNotEqual(LinkedList(1, 2, 3), LinkedList())
+        self.assertNotEqual(LinkedList(), LinkedList(1, 2, 3))
+        self.assertNotEqual(LinkedList(1, 3, 2), LinkedList(1, 2, 3))
+        self.assertNotEqual(LinkedList(1, 2, 3), LinkedList(1, 2))
+        self.assertNotEqual(LinkedList(1, 2), LinkedList(1, 2, 3))
 
     def test_length(self):
-        # self.assertEqual(0, len(LinkedList()))
+        self.assertEqual(0, len(LinkedList()))
         self.assertEqual(1, len(LinkedList(1)))
         self.assertEqual(2, len(LinkedList(1, 2)))
         self.assertEqual(3, len(LinkedList(1, 2, 3)))
@@ -46,14 +46,19 @@ class TestLinkedListIndexing(TestCase):
         self.assertEqual(LinkedList('a', 'b', 'c')[1], 'b')
         self.assertEqual(LinkedList('a', 'b', 'c')[2], 'c')
 
+    def test_list_slicing(self):
+        linked_list = LinkedList(*range(11))  # LinkedList(1, 2, ... 10)
+
+        self.assertEqual(linked_list[3:6], LinkedList(3, 4, 5))
+        self.assertEqual(linked_list[8:], LinkedList(8, 9, 10))
+        self.assertEqual(linked_list[0:8:3], LinkedList(0, 3, 6))
+
     def test_access_item_with_invalid_index(self):
         with self.assertRaises(IndexError) as context_manager:
-            LinkedList('a', 'b', 'c')[4]
+            _ = LinkedList('a', 'b', 'c')[4]
         self.assertEqual(str(context_manager.exception), 'LinkedList item is out of range')
 
-    def test_list_slicing(self):
-        pass
-        # self.assertEqual(str(LinkedList(*range(10))), 'a')
-        # self.assertEqual(LinkedList(range(10)), 'a')
-
-
+    def test_invalid_type(self):
+        with self.assertRaises(TypeError) as context_manager:
+            _ = LinkedList(1, 2)['a']
+        self.assertEqual(str(context_manager.exception), 'LinkedList indices must be integers or slices, not str')
