@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from linked_list import LinkedList
+from sequences.linked_list import LinkedList
 
 
 class TestLinkedList(TestCase):
