@@ -1,3 +1,10 @@
+from __future__ import annotations
+
+from typing import TypeVar, Generic, Sized, Iterable, Container, Tuple, Sequence, Collection, MutableSequence, Reversible
+
+T = TypeVar('T')
+
+
 class _NodeIterator:
     def __init__(self, current_node):
         self.current_node = current_node
@@ -58,7 +65,7 @@ class _Node:
 
 # https://docs.python.org/3/reference/datamodel.html#emulating-container-types
 
-class LinkedList:
+class LinkedList(Sized):
 
     def __init__(self, *args):
         try:
@@ -66,7 +73,7 @@ class LinkedList:
         except IndexError:
             self.head = None
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return self.head == other.head
 
     def __len__(self):
@@ -99,3 +106,8 @@ class LinkedList:
         if isinstance(item, int):
             return self.head[item]
         raise TypeError(f'{self.__class__.__name__} indices must be integers or slices, not {item.__class__.__name__}')
+
+
+if __name__ == '__main__':
+    for item in LinkedList(1, 2, 3):
+        print(item)

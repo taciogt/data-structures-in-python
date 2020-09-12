@@ -1,4 +1,4 @@
-from unittest import TestCase
+from unittest import TestCase, skip
 
 from sequences.linked_list import LinkedList
 
@@ -17,7 +17,7 @@ class TestLinkedList(TestCase):
         linked_list = LinkedList(None)
         self.assertEqual(str(linked_list), 'LinkedList[Node(None)]')
 
-    def test_equality(self):
+    def test_equality__with_same_type(self):
         self.assertEqual(LinkedList(), LinkedList())
         self.assertEqual(LinkedList(1), LinkedList(1))
         self.assertEqual(LinkedList(1, 2, 3), LinkedList(1, 2, 3))
@@ -28,7 +28,7 @@ class TestLinkedList(TestCase):
         self.assertNotEqual(LinkedList(1, 2, 3), LinkedList(1, 2))
         self.assertNotEqual(LinkedList(1, 2), LinkedList(1, 2, 3))
 
-    def test_length(self):
+    def test_length(self):  # LinkedList is a Sized type
         self.assertEqual(0, len(LinkedList()))
         self.assertEqual(1, len(LinkedList(1)))
         self.assertEqual(2, len(LinkedList(1, 2)))
@@ -37,8 +37,13 @@ class TestLinkedList(TestCase):
     def test_sort(self):
         pass
 
-    def test_del(self):
+    def test_append(self):
         pass
+
+    @skip('Implement after insert is available')
+    def test_reverse(self):
+
+        self.assertEqual(reversed(LinkedList(1)), LinkedList(1))
 
 
 class TestLinkedListIndexing(TestCase):

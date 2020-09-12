@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 flake8 = "3.8.3"
+mypy = "0.782"
 
 [packages]
 
