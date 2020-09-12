@@ -110,6 +110,6 @@ class LinkedList(Sized):
         raise TypeError(f'{self.__class__.__name__} indices must be integers or slices, not {item.__class__.__name__}')
 
 
-if __name__ == '__main__':
-    for item in LinkedList(1, 2, 3):
-        print(item)
+# if __name__ == '__main__':
+#     for item in LinkedList(1, 2, 3):
+#         print(item)
