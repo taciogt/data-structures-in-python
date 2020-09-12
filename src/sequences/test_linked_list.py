@@ -3,7 +3,7 @@ from unittest import TestCase, skip
 from sequences.linked_list import LinkedList
 
 
-class TestLinkedList(TestCase):
+class TestLinkedListBasicMethods(TestCase):
     def test_str(self):
         linked_list = LinkedList(1, 2, 3)
         self.assertEqual(str(linked_list), 'LinkedList[Node(1)->Node(2)->Node(3)]')
@@ -28,25 +28,28 @@ class TestLinkedList(TestCase):
         self.assertNotEqual(LinkedList(1, 2, 3), LinkedList(1, 2))
         self.assertNotEqual(LinkedList(1, 2), LinkedList(1, 2, 3))
 
-    def test_length(self):  # LinkedList is a Sized type
+
+class TestLinkedListIsCollection(TestCase):
+    def test_linked_list_is_sized(self):
         self.assertEqual(0, len(LinkedList()))
         self.assertEqual(1, len(LinkedList(1)))
         self.assertEqual(2, len(LinkedList(1, 2)))
         self.assertEqual(3, len(LinkedList(1, 2, 3)))
 
-    def test_sort(self):
-        pass
+    def test_linked_list_is_iterable(self):
+        self.assertEqual([], [item for item in LinkedList()])
+        self.assertEqual([1], [item for item in LinkedList(1)])
+        self.assertEqual([1, 2], [item for item in LinkedList(1, 2)])
 
     def test_append(self):
         pass
 
     @skip('Implement after insert is available')
     def test_reverse(self):
-
         self.assertEqual(reversed(LinkedList(1)), LinkedList(1))
 
 
-class TestLinkedListIndexing(TestCase):
+class TestLinkedListIsSequence(TestCase):
     def test_access_item_by_index(self):
         self.assertEqual(LinkedList('a', 'b', 'c')[0], 'a')
         self.assertEqual(LinkedList('a', 'b', 'c')[1], 'b')
@@ -59,7 +62,14 @@ class TestLinkedListIndexing(TestCase):
         self.assertEqual(linked_list[8:], LinkedList(8, 9, 10))
         self.assertEqual(linked_list[0:8:3], LinkedList(0, 3, 6))
 
+    def test_list_slicing_empty_list(self):
+        self.assertEqual(LinkedList()[0:8:3], LinkedList())
+
     def test_access_item_with_invalid_index(self):
+        with self.assertRaises(IndexError) as context_manager:
+            _ = LinkedList()[0]
+        self.assertEqual(str(context_manager.exception), 'LinkedList item is out of range')
+
         with self.assertRaises(IndexError) as context_manager:
             _ = LinkedList('a', 'b', 'c')[4]
         self.assertEqual(str(context_manager.exception), 'LinkedList item is out of range')
