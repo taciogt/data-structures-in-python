@@ -6,6 +6,7 @@
 
 Common data structures implemented in a pythonic manner. This objects follow the python's [data model](https://docs.python.org/3/reference/datamodel.html) by implementing the [interface](https://docs.python.org/3/library/collections.abc.html#module-collections.abc) corresponding to each structure. Sequences can provide the same interface as built-in classes such as `list` by [emulating a container type](https://docs.python.org/3/reference/datamodel.html#emulating-container-types). 
 
+## Sequences
 
 ### Linked List
 
