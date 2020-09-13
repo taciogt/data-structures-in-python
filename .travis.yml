@@ -11,5 +11,6 @@ script:
   - coverage run -m unittest discover src
 
 after_success:
+  - coverage report -m
   - coverage xml
   - bash <(curl -Ls https://coverage.codacy.com/get.sh) report
