@@ -72,7 +72,9 @@ class LinkedList(Sized, Iterable[T]):
             self.head = None
 
     def __eq__(self, other) -> bool:
-        return self.head == other.head
+        if isinstance(other, self.__class__):
+            return self.head == other.head
+        return False
 
     def __len__(self):
         length = 0

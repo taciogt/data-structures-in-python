@@ -17,7 +17,7 @@ class TestLinkedListBasicMethods(TestCase):
         linked_list = LinkedList(None)
         self.assertEqual(str(linked_list), 'LinkedList[Node(None)]')
 
-    def test_equality__with_same_type(self):
+    def test_equality_with_same_type(self):
         self.assertEqual(LinkedList(), LinkedList())
         self.assertEqual(LinkedList(1), LinkedList(1))
         self.assertEqual(LinkedList(1, 2, 3), LinkedList(1, 2, 3))
@@ -27,6 +27,11 @@ class TestLinkedListBasicMethods(TestCase):
         self.assertNotEqual(LinkedList(1, 3, 2), LinkedList(1, 2, 3))
         self.assertNotEqual(LinkedList(1, 2, 3), LinkedList(1, 2))
         self.assertNotEqual(LinkedList(1, 2), LinkedList(1, 2, 3))
+
+    def test_equality_with_different_type(self):
+        self.assertNotEqual(LinkedList(), 1)
+        self.assertNotEqual(LinkedList(1), 1)
+        self.assertNotEqual(LinkedList(1), 'a')
 
 
 class TestLinkedListIsCollection(TestCase):
