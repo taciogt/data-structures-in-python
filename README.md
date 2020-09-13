@@ -4,11 +4,10 @@
 
 # Data Structures in Python
 
-Common Data Structures Implemented in Python
+Common data structures implemented in a pythonic manner. This objects follow the python's [data model](https://docs.python.org/3/reference/datamodel.html) by implementing the [interface](https://docs.python.org/3/library/collections.abc.html#module-collections.abc) corresponding to each structure. Sequences can provide the same interface as built-in classes such as `list` by [emulating a container type](https://docs.python.org/3/reference/datamodel.html#emulating-container-types). 
 
 
-https://docs.python.org/3/reference/datamodel.html#special-method-names 
+### Linked List
 
-Callable types -> coroutine functions
-
-https://docs.python.org/3/reference/expressions.html#expressions
+From Wikipedia:
+> a linked list is a linear collection of data elements whose order is not given by their physical placement in memory. Instead, each element points to the next. 
