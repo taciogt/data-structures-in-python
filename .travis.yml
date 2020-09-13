@@ -8,4 +8,8 @@ install:
 script:
   - python -m flake8
   - python -m mypy .
-  - python -m unittest discover src
+  - coverage run -m unittest discover src
+
+after_success:
+  - coverage xml
+  - bash <(curl -Ls https://coverage.codacy.com/get.sh) report

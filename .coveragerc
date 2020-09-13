@@ -1,0 +1,11 @@
+[run]
+branch = True
+
+[report]
+include =
+    src/*
+omit =
+    */test_*.py
+
+[xml]
+output = cobertura.xml
