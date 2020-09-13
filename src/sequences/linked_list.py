@@ -25,10 +25,6 @@ class _NodeIterator(Iterator[T]):
 class _AbstractNode(Generic[T], Iterable[T], ABC):
 
     @abstractmethod
-    def __str__(self) -> str:
-        ...
-
-    @abstractmethod
     def __eq__(self, other) -> bool:
         ...
 
@@ -58,12 +54,6 @@ class _EmptyNode(_AbstractNode):
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    def __str__(self):
-        return ''
-
-    def __repr__(self):
-        return self.__str__()
-
     def __eq__(self, other):
         if other == _EmptyNode:
             return True
@@ -88,12 +78,6 @@ class _Node(_AbstractNode):
             self._next: _AbstractNode = _Node(next_nodes[0], *next_nodes[1:])
         except IndexError:
             self._next = _EmptyNode()
-
-    def __str__(self) -> str:
-        node_str = f'Node({self._content})'
-        if self._next is not _EmptyNode():
-            node_str += f'->{self._next}'
-        return node_str
 
     def __eq__(self, other):
         try:
