@@ -40,12 +40,14 @@ class _AbstractNode(Generic[T], Iterable[T], ABC):
         return _NodeIterator(current_node=self)
 
     @property
-    def content(self):
-        raise AttributeError
+    @abstractmethod
+    def content(self) -> T:
+        ...
 
     @property
-    def next(self):
-        raise AttributeError
+    @abstractmethod
+    def next(self) -> _AbstractNode:
+        ...
 
 
 class _EmptyNode(_AbstractNode):
@@ -69,6 +71,14 @@ class _EmptyNode(_AbstractNode):
 
     def __getitem__(self, _):
         raise IndexError
+
+    @property
+    def content(self):
+        raise AttributeError
+
+    @property
+    def next(self):
+        raise AttributeError
 
 
 class _Node(_AbstractNode):
@@ -125,13 +135,11 @@ class LinkedList(Sized, Iterable[T]):
             length += 1
         return length
 
-    def __str__(self):
-        if self.head is not _EmptyNode:
-            return f'{self.__class__.__name__}[{self.head}]'
-        else:
-            return f'{self.__class__.__name__}[]'
+    def __str__(self) -> str:
+        list_contents = ', '.join(map(str, self.head))
+        return f'{self.__class__.__name__}[{list_contents}]'
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.__str__()
 
     def __getitem__(self, item) -> Union[T, LinkedList]:
@@ -140,6 +148,7 @@ class LinkedList(Sized, Iterable[T]):
                 match_step = item.step is None or index % item.step == 0
                 should_stop = item.stop is not None and index >= item.stop
                 return item.start <= index and match_step and not should_stop
+
             if self.head is not None:
                 return LinkedList(*[node for index, node in enumerate(self.head)
                                     if include_index(index)])

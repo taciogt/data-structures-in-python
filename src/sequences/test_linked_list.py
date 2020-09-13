@@ -6,16 +6,16 @@ from sequences.linked_list import LinkedList
 class TestLinkedListBasicMethods(TestCase):
     def test_str(self):
         linked_list = LinkedList(1, 2, 3)
-        self.assertEqual(str(linked_list), 'LinkedList[Node(1)->Node(2)->Node(3)]')
+        self.assertEqual(str(linked_list), 'LinkedList[1, 2, 3]')
 
         linked_list = LinkedList(1)
-        self.assertEqual(str(linked_list), 'LinkedList[Node(1)]')
+        self.assertEqual(str(linked_list), 'LinkedList[1]')
 
         linked_list = LinkedList()
         self.assertEqual(str(linked_list), 'LinkedList[]')
 
         linked_list = LinkedList(None)
-        self.assertEqual(str(linked_list), 'LinkedList[Node(None)]')
+        self.assertEqual(str(linked_list), 'LinkedList[None]')
 
     def test_equality_with_same_type(self):
         self.assertEqual(LinkedList(), LinkedList())
