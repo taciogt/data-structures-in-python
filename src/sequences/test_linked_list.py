@@ -46,6 +46,7 @@ class TestLinkedListIsCollection(TestCase):
         self.assertEqual([1], [item for item in LinkedList(1)])
         self.assertEqual([1, 2], [item for item in LinkedList(1, 2)])
 
+    @skip('Not implemented')
     def test_append(self):
         pass
 
@@ -66,6 +67,10 @@ class TestLinkedListIsSequence(TestCase):
         self.assertEqual(linked_list[3:6], LinkedList(3, 4, 5))
         self.assertEqual(linked_list[8:], LinkedList(8, 9, 10))
         self.assertEqual(linked_list[0:8:3], LinkedList(0, 3, 6))
+
+    @skip('not implemented')
+    def test_negative_indexes(self):
+        pass
 
     def test_list_slicing_empty_list(self):
         self.assertEqual(LinkedList()[0:8:3], LinkedList())
