@@ -46,6 +46,15 @@ class TestLinkedListIsCollection(TestCase):
         self.assertEqual([1], [item for item in LinkedList(1)])
         self.assertEqual([1, 2], [item for item in LinkedList(1, 2)])
 
+    def test_linked_list_is_a_container(self):
+        self.assertFalse(1 in LinkedList())
+        self.assertFalse(None in LinkedList())
+
+        self.assertTrue(1 in LinkedList(1))
+        self.assertTrue(2 not in LinkedList(1))
+        self.assertTrue(1 in LinkedList(1, 2))
+        self.assertTrue(2 in LinkedList(1, 2))
+
     @skip('Not implemented')
     def test_append(self):
         pass

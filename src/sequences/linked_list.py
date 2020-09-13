@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import TypeVar, Generic, Sized, Iterable, Iterator, Sequence, Union
+from typing import TypeVar, Generic, Iterable, Iterator, Sequence, Union, Collection
 
 T = TypeVar('T')
 
@@ -100,7 +100,7 @@ class _Node(_AbstractNode):
         return self._next
 
 
-class LinkedList(Sized, Iterable[T]):
+class LinkedList(Collection[T]):
 
     def __init__(self, *args):
         try:
@@ -147,3 +147,9 @@ class LinkedList(Sized, Iterable[T]):
 
     def __iter__(self) -> Iterator[T]:
         return _NodeIterator(self.head)
+
+    def __contains__(self, __x: object) -> bool:
+        for item in self:
+            if __x == item:
+                return True
+        return False
